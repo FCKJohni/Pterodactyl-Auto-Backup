@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $EUID -ne 0 ]; then
-   echo "This script must be run as root" 
+   echo "This script must be run as root"
    exit 1
 fi
 read -p "Do you want to setup AutoBackup For Pterodactyl? (Y/N)" continue
@@ -23,7 +23,7 @@ fi
 
 if [ ! -f "/scripts/autoBackup.sh" ]; then
 	cd /scripts
-	wget https://raw.githubusercontent.com/Kong-plays/Pterodactyl-Auto-Backup/master/autoBackup.sh
+	wget https://raw.githubusercontent.com/FCKJohni/Pterodactyl-Auto-Backup/master/autoBackup.sh
 	chmod +x ~/scripts/autoBackup.sh
 	cd ../
 fi
@@ -31,7 +31,7 @@ cd ~/.ssh
 if [ -f "~/.ssh/config" ]; then
 	rm config
 fi
-wget https://raw.githubusercontent.com/Kong-plays/Pterodactyl-Auto-Backup/master/resources/config
+wget https://raw.githubusercontent.com/FCKJohni/Pterodactyl-Auto-Backup/master/resources/config
 cd ../
 
 
