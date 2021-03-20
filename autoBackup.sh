@@ -31,7 +31,7 @@ backup_server="1.2.3.4"
 
 date=$(date +'%m-%d-%Y')
 
-daemon_dir="/var/lib/Pterodactyl/volumes"
+daemon_dir="/var/lib/pterodactyl/volumes"
 
 
 if [ -d "$daemon_dir" ]; then
