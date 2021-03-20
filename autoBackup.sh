@@ -8,8 +8,6 @@ else
   apt install -y dnsutils
 fi
 
-dpkg -s rsync &> /dev/null
-
 if [ $? -eq 0 ]; then
   echo ""
 else
@@ -21,7 +19,7 @@ export GZIP=-9
 local_backup=$false
 
 ip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-allServers(127.0.0.1)
+allServers=(127.0.0.1 127.0.0.1)
 server_1="127.0.0.1"
 server_2="127.0.0.1"
 server_3="127.0.0.1"
