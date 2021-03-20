@@ -27,7 +27,8 @@ server_4="127.0.0.1"
 server_5="127.0.0.1"
 server_6="127.0.0.1"
 
-backup_server="1.2.3.4"
+backup_user="root"
+. ./autoBackup.config
 
 date=$(date +'%m-%d-%Y')
 
@@ -40,11 +41,11 @@ if [ -d "$daemon_dir" ]; then
     for i in ${!allServers[@]}; do
       if [[ $ip == $backup_server ]]; then
         tar cvzf ./$date.tar.gz $daemon_dir
-        rsync -a $daemon_dir/$date.tar.gz /backup/backup_server/
+        sshpass -p "${backup_pw}" rsync -a $daemon_dir/$date.tar.gz /backup/backup_server/
         rm ./$date.tar.gz
       else
         tar cvzf ./$date.tar.gz $daemon_dir
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress $daemon_dir/$date.tar.gz root@$backup_server:/backup/Server_$i/
+        sshpass -p "${backup_pw}" rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress $daemon_dir/$date.tar.gz $backup_user@$backup_server:/backup/Server_$i/
         rm ./$date.tar.gz
       fi
     done
